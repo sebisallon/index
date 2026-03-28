@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sebisallon.github.io/index/sitemap.xml
