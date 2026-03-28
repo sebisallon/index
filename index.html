@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sebi Sallon | Modern Barbershop</title>
   
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- React 17 & ReactDOM -->
   <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
   
-  <!-- Babel për të lexuar JSX në browser -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <style>
@@ -49,7 +46,6 @@
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
       const [activeTab, setActiveTab] = useState('Të gjitha');
       
-      // State per galerine e madhe
       const [lightboxIndex, setLightboxIndex] = useState(null);
       const [touchStart, setTouchStart] = useState(null);
       const [touchEnd, setTouchEnd] = useState(null);
@@ -62,7 +58,6 @@
         return () => window.removeEventListener('scroll', handleScroll);
       }, []);
 
-      // Bllokon scroll te faqes kur hapet fotoja
       useEffect(() => {
         if (lightboxIndex !== null) {
           document.body.classList.add('lightbox-open');
@@ -79,47 +74,57 @@
         }
       };
 
+      // --- MENUJA E RE E ÇMIMEVE ---
       const services = [
-        { name: 'Qethje', price: '600 Lekë', desc: 'Qethje flokësh sipas modelit të dëshiruar.', category: 'Koka' },
-        { name: 'Stilim flokësh me larje', price: '200 Lekë', desc: 'Stilim profesional me produkte cilësore.', category: 'Koka' },
-        { name: 'Larje koke', price: '100 Lekë', desc: 'Larja e kokës para ose pas qethjes.', category: 'Koka' },
-        { name: 'Rroje koke', price: '500 Lekë', desc: 'Rruajtje koke me brisk.', category: 'Koka' },
-        { name: 'Rroje mjekrre', price: '400 Lekë', desc: 'Rruajtje mjekrre me brisk tradicional.', category: 'Mjekrra' },
-        { name: 'Stilim mjekrre me makinë', price: '200 Lekë', desc: 'Konturim dhe stilim me makinë.', category: 'Mjekrra' },
-        { name: 'Stilim mjekrre me brisk', price: '200 Lekë', desc: 'Detaje dhe saktësi maksimale me brisk.', category: 'Mjekrra' },
-        { name: 'Lyerje mjekrre', price: '400 Lekë', desc: 'Mbulim i thinjave ose ndryshim ngjyre.', category: 'Mjekrra' },
-        { name: 'Lyerje Floku', price: '1000 Lekë', desc: 'Lyerje flokësh sipas ngjyrës së dëshiruar.', category: 'Koka' },
-        { name: 'Pastrim fytyre me pe', price: '100 Lekë', desc: 'Pastrim i detajuar i qimeve me pe.', category: 'Fytyra' },
-        { name: 'Pastrim me dyll', price: '200 Lekë', desc: 'Heqje e qimeve të padëshiruara me dyll.', category: 'Fytyra' },
-        { name: 'Maskë fytyre', price: '1000 Lekë', desc: 'Trajtim rigjenerues dhe pastrues i thellë.', category: 'Fytyra' },
+        { name: 'Qethje', price: '600 L', desc: 'Qethje flokësh sipas modelit të dëshiruar.', category: 'Koka' },
+        { name: 'Larje koke', price: '100 L', desc: 'Larja e kokës para ose pas qethjes.', category: 'Koka' },
+        { name: 'Stilim floku me larje', price: '200 L', desc: 'Stilim profesional i flokut me produkte.', category: 'Koka' },
+        { name: 'Stilim mjekre', price: '200 L', desc: 'Konturim dhe stilim i detajuar i mjekrës.', category: 'Mjekrra' },
+        { name: 'Rroje mjekre', price: '400 L', desc: 'Rruajtje mjekrre plotësisht me brisk.', category: 'Mjekrra' },
+        { name: 'Rroje koke', price: '500 L', desc: 'Rruajtje e kokës plotësisht me brisk.', category: 'Koka' },
+        { name: 'Lyerje floku', price: '1000 L', desc: 'Lyerje floku sipas ngjyrës së dëshiruar.', category: 'Koka' },
+        { name: 'Lyerje mjekre', price: '400 L', desc: 'Mbulim i thinjave ose ndryshim ngjyre.', category: 'Mjekrra' },
+        { name: 'Pastrim me pe', price: '100 L', desc: 'Pastrim i detajuar i qimeve të fytyrës.', category: 'Fytyra' },
+        { name: 'Pastrim me dyll', price: '200 L', desc: 'Heqje e qimeve të padëshiruara me dyll.', category: 'Fytyra' },
+        { name: 'Trajtim fytyre për aknet', price: '1000 L', desc: 'Trajtim pastrues i thellë specifik.', category: 'Fytyra' },
       ];
 
       const categories = ['Të gjitha', 'Koka', 'Mjekrra', 'Fytyra'];
       const filteredServices = services.filter(s => activeTab === 'Të gjitha' || s.category === activeTab);
 
-      // --- URL-të reale ---
-      const heroBackground = "https://sebisallon.github.io/menu/assets/img/gallery/gallery-2.jpg";
-      const aboutImage = "https://sebisallon.github.io/menu/assets/img/about.jpg";
+      // --- FOTOT E REJA NGA GITHUB (PËR SFOND DHE KUSH JEMI) ---
+      const heroBackground = "https://sebisallon.github.io/index/assets/img/gallery/sallon-berberi-ambient-i-brendshem-tirane-1.JPG"; 
+      const aboutImage = "https://sebisallon.github.io/index/assets/img/gallery/berber-ne-pune-tiran.JPG";
       const mapUrl = "https://maps.app.goo.gl/YPB8Ux2ZoKFhWt1a8?g_st=ic";
       
-      // ARRAY ME TË GJITHA FOTOT (Edhe nëse janë 20-30 foto, vendosi të gjitha këtu)
+      // --- TË GJITHA FOTOT E REJA TË GALERISË ---
       const galleryImages = [
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-1.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-2.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-3.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-4.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-5.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-6.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-7.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-8.jpg",
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-9.jpg", // Foto shtese per te testuar scroll-in ne lightbox
-        "https://sebisallon.github.io/menu/assets/img/gallery/gallery-10.jpg" // Foto shtese per te testuar scroll-in ne lightbox
+        "https://sebisallon.github.io/index/assets/img/gallery/sallon-berberi-ambient-i-brendshem-tirane-1.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/model-flokesh-fade-sebi-sallon.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/karrige-berberi-profesionale-sebi-sallon-1.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/qethje-moderne-meshkuj-tirane-1.jpg",
+        "https://sebisallon.github.io/index/assets/img/gallery/konturim-mjekrre-berber-tirane.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/sallon-berberi-ambient-i-brendshem-tirane-2.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/stilim-flokesh-me-xhel-tirane.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/sallon-berberi-ambient-i-jashtem-tirane-1.JPG",
+        // Pjesa tjeter e fotove qe do shfaqen kur bejme swipe:
+        "https://sebisallon.github.io/index/assets/img/gallery/berber-ne-pune-tiran.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/berber-profesional-qethje-shkurter.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/karrige-berberi-profesionale-sebi-sallon-2.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/karrige-berberi-profesionale-sebi-sallon-3.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/kujdesi-per-mjekrren-sebi-sallon.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/model-flokesh-fade-sebi-sallon-1.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/qethje-klasike-per-meshkuj.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/sallon-berberi-ambient-i-brendshem-tirane-3.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/sallon-berberi-ambient-i-brendshem-tirane-4.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/sallon-berberi-ambient-i-brendshem-tirane-5.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/stilim-dhe-lyerje-flokesh-meshkuj-sebi-sallon-tirane.JPG",
+        "https://sebisallon.github.io/index/assets/img/gallery/stilim-mjekrre-me-brisk-tirane.JPG"
       ];
 
-      // Kjo do të shfaqë vetëm 8 fotot e para në faqe për të ruajtur shpejtësinë
+      // Kjo shfaq vetëm 8 fotot e para për t'u ngarkuar shpejt
       const visibleGalleryImages = galleryImages.slice(0, 8);
 
-      // --- Logjika e Galerise (Lightbox & Swipe) ---
       const openLightbox = (index) => setLightboxIndex(index);
       const closeLightbox = () => setLightboxIndex(null);
       
@@ -133,7 +138,6 @@
         setLightboxIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
       };
 
-      // Swipe ne telefon
       const minSwipeDistance = 50;
       const onTouchStart = (e) => {
         setTouchEnd(null);
@@ -155,7 +159,6 @@
         }
       };
 
-      // --- Te dhenat per Vleresimet (Reviews) ---
       const reviews = [
         { name: "Ardit K.", text: "Berberi më i mirë në Tiranë! Shërbim profesional dhe ambient shumë relaksues. E rekomandoj 100%." },
         { name: "Sokol M.", text: "Klient i rregullt prej vitesh. Çdo detaj është i kuruar dhe produktet që përdorin janë vërtet cilësore." },
@@ -165,7 +168,6 @@
       return (
         <div className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-amber-500 selection:text-zinc-900 pb-20 md:pb-0">
           
-          {/* Navigation */}
           <nav className={`fixed w-full z-50 transition-all duration-300 border-b ${isScrolled ? 'bg-zinc-950/95 backdrop-blur-md border-zinc-800 py-3' : 'bg-transparent border-transparent py-5'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center">
@@ -174,7 +176,6 @@
                   <span className="text-2xl font-bold tracking-wider text-white uppercase">Sebi<span className="text-amber-500">Sallon</span></span>
                 </div>
                 
-                {/* Desktop Menu */}
                 <div className="hidden md:flex items-center space-x-8">
                   {['Kush Jemi', 'Shërbimet', 'Galeria', 'Vlerësime', 'Kontakt'].map((item) => (
                     <button 
@@ -185,23 +186,14 @@
                       {item}
                     </button>
                   ))}
-                  <a 
-                    href="tel:+355693633411"
-                    className="flex items-center text-zinc-300 hover:text-amber-500 font-medium transition-colors"
-                  >
+                  <a href="tel:+355693633411" className="flex items-center text-zinc-300 hover:text-amber-500 font-medium transition-colors">
                     <Phone className="w-4 h-4 mr-2" />
                   </a>
-                  <a 
-                    href="https://wa.me/355693633411" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="bg-amber-500 hover:bg-amber-600 text-zinc-950 px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 flex items-center shadow-lg shadow-amber-500/20"
-                  >
+                  <a href="https://wa.me/355693633411" target="_blank" rel="noreferrer" className="bg-amber-500 hover:bg-amber-600 text-zinc-950 px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 flex items-center shadow-lg shadow-amber-500/20">
                     Rezervo
                   </a>
                 </div>
 
-                {/* Mobile Menu Button */}
                 <div className="md:hidden flex items-center">
                   <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-zinc-300 hover:text-white p-2">
                     {mobileMenuOpen ? <XIcon className="h-7 w-7" /> : <MenuIcon className="h-7 w-7" />}
@@ -210,7 +202,6 @@
               </div>
             </div>
 
-            {/* Mobile Menu Panel */}
             {mobileMenuOpen && (
               <div className="md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 shadow-xl">
                 <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
@@ -228,15 +219,9 @@
             )}
           </nav>
 
-          {/* Hero Section */}
           <section id="hero" className="relative h-screen flex items-center justify-center">
             <div className="absolute inset-0 z-0">
-              <img 
-                src={heroBackground}
-                alt="Barbershop Interior" 
-                className="w-full h-full object-cover opacity-40 grayscale"
-                style={{ filter: 'grayscale(30%) opacity(0.4)' }}
-              />
+              <img src={heroBackground} alt="Barbershop Interior" className="w-full h-full object-cover opacity-40 grayscale" style={{ filter: 'grayscale(30%) opacity(0.4)' }} />
               <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-zinc-950/80 to-zinc-950"></div>
             </div>
             
@@ -254,36 +239,22 @@
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a 
-                  href="tel:+355693633411"
-                  className="w-full sm:w-auto bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center"
-                >
+                <a href="tel:+355693633411" className="w-full sm:w-auto bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center">
                   <Phone className="mr-2 w-5 h-5 text-amber-500" /> Telefono
                 </a>
-                <a 
-                  href="https://wa.me/355693633411"
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-zinc-950 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-amber-500/25 flex items-center justify-center"
-                >
+                <a href="https://wa.me/355693633411" target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-zinc-950 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-amber-500/25 flex items-center justify-center">
                   <MessageCircle className="mr-2 w-5 h-5" /> WhatsApp
                 </a>
               </div>
             </div>
           </section>
 
-          {/* About Section */}
           <section id="kush-jemi" className="py-20 md:py-24 bg-zinc-950">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                 <div className="relative order-2 md:order-1 px-4 md:px-0">
                   <div className="absolute -inset-2 md:-inset-4 border-2 border-amber-500/30 rounded-lg transform translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4"></div>
-                  <img 
-                    src={aboutImage}
-                    alt="Barber working" 
-                    className="relative rounded-lg shadow-2xl z-10 w-full h-auto object-cover aspect-[4/5]"
-                    style={{ filter: 'grayscale(20%)' }}
-                  />
+                  <img src={aboutImage} alt="Barber working" className="relative rounded-lg shadow-2xl z-10 w-full h-auto object-cover aspect-[4/5]" style={{ filter: 'grayscale(20%)' }} />
                   <div className="absolute -bottom-6 -right-2 md:-bottom-8 md:-right-8 bg-zinc-900 border border-zinc-800 p-4 md:p-6 rounded-lg shadow-xl z-20">
                     <h4 className="text-3xl md:text-4xl font-bold text-amber-500 mb-1">10+</h4>
                     <p className="text-xs md:text-sm font-medium text-zinc-400 uppercase tracking-wider">Vite Eksperiencë</p>
@@ -299,9 +270,7 @@
                   <ul className="space-y-4 mt-8">
                     {['Staf i kualifikuar dhe me përvojë', 'Kushte higjeno-sanitare maksimale', 'Produkte premium për kujdesin personal'].map((item, i) => (
                       <li key={i} className="flex items-center text-zinc-300">
-                        <div className="bg-amber-500/10 p-1.5 rounded-full mr-4 flex-shrink-0">
-                          <Scissors className="w-4 h-4 text-amber-500" />
-                        </div>
+                        <div className="bg-amber-500/10 p-1.5 rounded-full mr-4 flex-shrink-0"><Scissors className="w-4 h-4 text-amber-500" /></div>
                         <span className="text-sm md:text-base">{item}</span>
                       </li>
                     ))}
@@ -311,7 +280,6 @@
             </div>
           </section>
 
-          {/* Services Section */}
           <section id="shërbimet" className="py-20 md:py-24 bg-zinc-900 border-y border-zinc-800">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12 md:mb-16">
@@ -319,16 +287,13 @@
                 <h3 className="text-3xl md:text-4xl font-bold text-white">Lista e Çmimeve</h3>
               </div>
 
-              {/* Category Tabs */}
               <div className="flex flex-wrap justify-center gap-2 mb-10">
                 {categories.map(cat => (
                   <button
                     key={cat}
                     onClick={() => setActiveTab(cat)}
                     className={`px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-wide transition-all ${
-                      activeTab === cat 
-                        ? 'bg-amber-500 text-zinc-950 shadow-lg shadow-amber-500/20' 
-                        : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white'
+                      activeTab === cat ? 'bg-amber-500 text-zinc-950 shadow-lg shadow-amber-500/20' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white'
                     }`}
                   >
                     {cat}
@@ -336,18 +301,13 @@
                 ))}
               </div>
 
-              {/* Service List */}
               <div className="space-y-4 md:space-y-6">
                 {filteredServices.map((service, index) => (
                   <div key={index} className="group relative bg-zinc-950/50 p-5 md:p-6 rounded-xl border border-zinc-800/50 hover:border-amber-500/50 transition-colors">
                     <div className="flex justify-between items-end mb-2">
-                      <h4 className="text-lg md:text-xl font-bold text-white group-hover:text-amber-500 transition-colors">
-                        {service.name}
-                      </h4>
+                      <h4 className="text-lg md:text-xl font-bold text-white group-hover:text-amber-500 transition-colors">{service.name}</h4>
                       <div className="hidden sm:block flex-1 border-b-2 border-dashed border-zinc-700 mx-4 relative bottom-2 opacity-30"></div>
-                      <span className="text-lg md:text-xl font-bold text-amber-500 whitespace-nowrap ml-4">
-                        {service.price}
-                      </span>
+                      <span className="text-lg md:text-xl font-bold text-amber-500 whitespace-nowrap ml-4">{service.price}</span>
                     </div>
                     <p className="text-zinc-500 text-xs md:text-sm">{service.desc}</p>
                   </div>
@@ -356,7 +316,6 @@
             </div>
           </section>
 
-          {/* Gallery Section */}
           <section id="galeria" className="py-20 md:py-24 bg-zinc-950 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12 md:mb-16">
@@ -366,16 +325,8 @@
 
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                 {visibleGalleryImages.map((src, idx) => (
-                  <div 
-                    key={idx} 
-                    onClick={() => openLightbox(idx)}
-                    className="group relative overflow-hidden rounded-xl aspect-[4/5] bg-zinc-900 cursor-pointer border border-zinc-800 hover:border-amber-500/50 transition-all"
-                  >
-                    <img 
-                      src={src} 
-                      alt={`Galeria ${idx + 1}`} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
-                    />
+                  <div key={idx} onClick={() => openLightbox(idx)} className="group relative overflow-hidden rounded-xl aspect-[4/5] bg-zinc-900 cursor-pointer border border-zinc-800 hover:border-amber-500/50 transition-all">
+                    <img src={src} alt={`Galeria ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                        <span className="opacity-0 group-hover:opacity-100 text-white font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm transition-opacity duration-300 scale-95 group-hover:scale-100">Shiko</span>
                     </div>
@@ -389,7 +340,6 @@
             </div>
           </section>
 
-          {/* Reviews Section */}
           <section id="vlerësime" className="py-20 md:py-24 bg-zinc-900 border-t border-zinc-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12 md:mb-16">
@@ -415,75 +365,31 @@
               </div>
 
               <div className="text-center">
-                <a 
-                  href={mapUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center bg-white hover:bg-zinc-200 text-zinc-900 font-bold px-8 py-3.5 rounded-full transition-all transform hover:-translate-y-1 shadow-lg"
-                >
-                  <GoogleIcon className="w-5 h-5 mr-3" />
-                  Lexo të gjitha vlerësimet në Google
+                <a href={mapUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-white hover:bg-zinc-200 text-zinc-900 font-bold px-8 py-3.5 rounded-full transition-all transform hover:-translate-y-1 shadow-lg">
+                  <GoogleIcon className="w-5 h-5 mr-3" /> Lexo të gjitha vlerësimet në Google
                 </a>
               </div>
             </div>
           </section>
 
-          {/* Lightbox / Gallery Interaktive */}
           {lightboxIndex !== null && (
-            <div 
-              className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center touch-none"
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEndHandler}
-            >
-              {/* Lart */}
+            <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center touch-none" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEndHandler}>
               <div className="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-50 bg-gradient-to-b from-black/80 to-transparent">
                 <span className="text-zinc-400 text-sm font-medium px-2">{lightboxIndex + 1} / {galleryImages.length}</span>
-                <button 
-                  onClick={closeLightbox}
-                  className="p-2 bg-zinc-900/80 hover:bg-amber-500 hover:text-black text-white rounded-full transition-colors"
-                >
-                  <XIcon className="w-6 h-6" />
-                </button>
+                <button onClick={closeLightbox} className="p-2 bg-zinc-900/80 hover:bg-amber-500 hover:text-black text-white rounded-full transition-colors"><XIcon className="w-6 h-6" /></button>
               </div>
-
-              {/* Majtas */}
-              <button 
-                onClick={prevImage}
-                className="hidden md:flex absolute left-4 p-3 bg-zinc-900/50 hover:bg-amber-500 hover:text-black text-white rounded-full transition-colors z-50"
-              >
-                <ChevronLeft className="w-8 h-8" />
-              </button>
-
-              {/* Fotoja */}
+              <button onClick={prevImage} className="hidden md:flex absolute left-4 p-3 bg-zinc-900/50 hover:bg-amber-500 hover:text-black text-white rounded-full transition-colors z-50"><ChevronLeft className="w-8 h-8" /></button>
               <div className="w-full h-full p-4 flex items-center justify-center outline-none">
-                <img 
-                  src={galleryImages[lightboxIndex]} 
-                  alt="Zmadhuar" 
-                  className="max-w-full max-h-[85vh] object-contain rounded-md shadow-2xl transition-transform"
-                />
+                <img src={galleryImages[lightboxIndex]} alt="Zmadhuar" className="max-w-full max-h-[85vh] object-contain rounded-md shadow-2xl transition-transform" />
               </div>
-
-              {/* Djathtas */}
-              <button 
-                onClick={nextImage}
-                className="hidden md:flex absolute right-4 p-3 bg-zinc-900/50 hover:bg-amber-500 hover:text-black text-white rounded-full transition-colors z-50"
-              >
-                <ChevronRight className="w-8 h-8" />
-              </button>
-
-              <div className="md:hidden absolute bottom-6 text-zinc-500 text-xs font-medium tracking-wide">
-                Bëj swipe për të kaluar {galleryImages.length} fotot
-              </div>
+              <button onClick={nextImage} className="hidden md:flex absolute right-4 p-3 bg-zinc-900/50 hover:bg-amber-500 hover:text-black text-white rounded-full transition-colors z-50"><ChevronRight className="w-8 h-8" /></button>
+              <div className="md:hidden absolute bottom-6 text-zinc-500 text-xs font-medium tracking-wide">Bëj swipe për të kaluar {galleryImages.length} fotot</div>
             </div>
           )}
 
-          {/* Contact & Footer */}
           <footer id="kontakt" className="bg-zinc-950 border-t border-zinc-800 pt-16 pb-8 md:pt-20 md:pb-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-12 md:mb-16">
-                
-                {/* Brand & Socials */}
                 <div>
                   <div className="flex items-center mb-6">
                     <Scissors className="h-8 w-8 text-amber-500 mr-2" />
@@ -493,19 +399,12 @@
                     Stili juaj është prioriteti ynë. Ofrojmë prerje dhe stilime të një cilësie të lartë në një ambient ku çdo detaj flet për perfeksion.
                   </p>
                   <div className="flex space-x-3">
-                    <a href="https://www.instagram.com/sebi_sallon/" target="_blank" rel="noreferrer" className="bg-zinc-900 border border-zinc-800 p-3 rounded-full text-zinc-400 hover:text-amber-500 hover:border-amber-500/50 transition-all">
-                      <Instagram className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="bg-zinc-900 border border-zinc-800 p-3 rounded-full text-zinc-400 hover:text-amber-500 hover:border-amber-500/50 transition-all">
-                      <Facebook className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="bg-zinc-900 border border-zinc-800 p-3 rounded-full text-zinc-400 hover:text-amber-500 hover:border-amber-500/50 transition-all">
-                      <Youtube className="w-5 h-5" />
-                    </a>
+                    <a href="https://www.instagram.com/sebi_sallon/" target="_blank" rel="noreferrer" className="bg-zinc-900 border border-zinc-800 p-3 rounded-full text-zinc-400 hover:text-amber-500 hover:border-amber-500/50 transition-all"><Instagram className="w-5 h-5" /></a>
+                    <a href="#" className="bg-zinc-900 border border-zinc-800 p-3 rounded-full text-zinc-400 hover:text-amber-500 hover:border-amber-500/50 transition-all"><Facebook className="w-5 h-5" /></a>
+                    <a href="#" className="bg-zinc-900 border border-zinc-800 p-3 rounded-full text-zinc-400 hover:text-amber-500 hover:border-amber-500/50 transition-all"><Youtube className="w-5 h-5" /></a>
                   </div>
                 </div>
 
-                {/* Contact Info */}
                 <div>
                   <h4 className="text-lg font-bold text-white uppercase tracking-wider mb-6">Informacion Kontakti</h4>
                   <ul className="space-y-5">
@@ -513,12 +412,7 @@
                       <MapPin className="w-5 h-5 text-amber-500 mr-3 mt-1 flex-shrink-0" />
                       <div className="flex flex-col">
                         <span className="mb-2">Te Rruga Ura, përballë Tower Bridge,<br/> Tiranë, Shqipëri</span>
-                        <a 
-                          href={mapUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center text-amber-500 hover:text-amber-400 font-medium text-sm border border-amber-500/30 hover:border-amber-500 bg-amber-500/10 px-3 py-1.5 rounded-md transition-all w-max"
-                        >
+                        <a href={mapUrl} target="_blank" rel="noreferrer" className="inline-flex items-center text-amber-500 hover:text-amber-400 font-medium text-sm border border-amber-500/30 hover:border-amber-500 bg-amber-500/10 px-3 py-1.5 rounded-md transition-all w-max">
                           Hap në Google Maps <ChevronRight className="w-4 h-4 ml-1" />
                         </a>
                       </div>
@@ -530,22 +424,12 @@
                   </ul>
                 </div>
 
-                {/* Hours */}
                 <div>
                   <h4 className="text-lg font-bold text-white uppercase tracking-wider mb-6">Orari i Punës</h4>
                   <ul className="space-y-3 text-sm md:text-base">
-                    <li className="flex justify-between text-zinc-400 border-b border-zinc-800 pb-2">
-                      <span>E Hënë - E Premte</span>
-                      <span className="text-white">08:00 - 22:00</span>
-                    </li>
-                    <li className="flex justify-between text-zinc-400 border-b border-zinc-800 pb-2">
-                      <span>E Shtunë</span>
-                      <span className="text-white">08:00 - 22:00</span>
-                    </li>
-                    <li className="flex justify-between text-zinc-400 pb-2">
-                      <span>E Dielë</span>
-                      <span className="text-white">08:00 - 22:00</span>
-                    </li>
+                    <li className="flex justify-between text-zinc-400 border-b border-zinc-800 pb-2"><span>E Hënë - E Premte</span><span className="text-white">08:00 - 22:00</span></li>
+                    <li className="flex justify-between text-zinc-400 border-b border-zinc-800 pb-2"><span>E Shtunë</span><span className="text-white">08:00 - 22:00</span></li>
+                    <li className="flex justify-between text-zinc-400 pb-2"><span>E Dielë</span><span className="text-white">08:00 - 22:00</span></li>
                   </ul>
                 </div>
               </div>
@@ -556,22 +440,9 @@
             </div>
           </footer>
 
-          {/* Mobile Sticky Booking Menu */}
           <div className="md:hidden fixed bottom-0 left-0 w-full p-3 bg-zinc-950/90 backdrop-blur-md border-t border-zinc-800 z-40 flex gap-3">
-            <a 
-              href="tel:+355693633411" 
-              className="flex-1 bg-zinc-800 text-white font-bold py-3.5 rounded-full flex justify-center items-center border border-zinc-700"
-            >
-              <Phone className="w-5 h-5 text-amber-500" />
-            </a>
-            <a 
-              href="https://wa.me/355693633411" 
-              target="_blank" 
-              rel="noreferrer"
-              className="flex-[3] bg-amber-500 text-zinc-950 font-bold py-3.5 rounded-full flex justify-center items-center shadow-[0_0_15px_rgba(245,158,11,0.2)]"
-            >
-              <MessageCircle className="w-5 h-5 mr-2" /> Rezervo Tani
-            </a>
+            <a href="tel:+355693633411" className="flex-1 bg-zinc-800 text-white font-bold py-3.5 rounded-full flex justify-center items-center border border-zinc-700"><Phone className="w-5 h-5 text-amber-500" /></a>
+            <a href="https://wa.me/355693633411" target="_blank" rel="noreferrer" className="flex-[3] bg-amber-500 text-zinc-950 font-bold py-3.5 rounded-full flex justify-center items-center shadow-[0_0_15px_rgba(245,158,11,0.2)]"><MessageCircle className="w-5 h-5 mr-2" /> Rezervo Tani</a>
           </div>
         </div>
       );
@@ -581,5 +452,3 @@
   </script>
 </body>
 </html>
-
-
